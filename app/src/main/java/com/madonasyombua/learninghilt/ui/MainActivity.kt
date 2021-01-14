@@ -1,17 +1,18 @@
-package com.madonasyombua.learninghilt
+package com.madonasyombua.learninghilt.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.Navigation
+import com.madonasyombua.learninghilt.R
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        //navView.setupWithNavController(navController)
+    override fun onSupportNavigateUp(): Boolean {
+        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
     }
 }
