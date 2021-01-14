@@ -23,7 +23,8 @@ class StudentListsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.student_lists_fragment, container, false)
+        binding = StudentListsFragmentBinding.inflate(layoutInflater)
+        return binding?.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

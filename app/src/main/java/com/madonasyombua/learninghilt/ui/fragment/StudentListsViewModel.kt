@@ -6,6 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.madonasyombua.learninghilt.data.StudentData
 import com.madonasyombua.learninghilt.data.StudentRepository
 
-class StudentListsViewModel @ViewModelInject constructor(private val studentRepository: StudentRepository) : ViewModel() {
+class StudentListsViewModel @ViewModelInject constructor(studentRepository: StudentRepository) : ViewModel() {
     val studentData: LiveData<List<StudentData>> = studentRepository.studentRepository
 }
