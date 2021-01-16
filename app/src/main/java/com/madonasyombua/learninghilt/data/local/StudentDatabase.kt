@@ -2,6 +2,8 @@ package com.madonasyombua.learninghilt.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import com.madonasyombua.learninghilt.data.StudentData
 
 
@@ -10,7 +12,8 @@ import com.madonasyombua.learninghilt.data.StudentData
  * 2021 Learning Hilt
  */
 @Database(entities = [StudentData::class], version = 1, exportSchema = false)
-internal abstract class StudentDatabase: RoomDatabase() {
+@TypeConverters(DateConverter::class)
+abstract class StudentDatabase: RoomDatabase() {
 
     abstract fun studentDao(): StudentDao
 }

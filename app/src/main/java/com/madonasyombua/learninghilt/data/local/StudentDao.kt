@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 @Dao
-internal interface StudentDao {
+interface StudentDao {
 
     @Query("SELECT *FROM studentList")
     fun loadAllStudentsLists(): Flow<List<StudentData>>
