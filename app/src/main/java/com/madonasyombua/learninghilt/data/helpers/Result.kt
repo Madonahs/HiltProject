@@ -1,7 +1,7 @@
 package com.madonasyombua.learninghilt.data.helpers
 
 
-internal sealed class Result<out Type> {
+sealed class Result<out Type> {
 
     data class Success<out Type>(
         val data: Type,

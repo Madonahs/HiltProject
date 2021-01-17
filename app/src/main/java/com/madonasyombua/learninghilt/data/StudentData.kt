@@ -10,8 +10,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "studentList")
 data class StudentData(
-        @PrimaryKey(autoGenerate = true)
-        var id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     var school: String?,
     var StudentFirstName: String?,
     var examScore: String?,

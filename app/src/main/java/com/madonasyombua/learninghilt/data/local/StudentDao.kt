@@ -9,15 +9,19 @@ import kotlinx.coroutines.flow.Flow
  * @author Madona Syombua
  * 2021 Learning Hilt
  */
-
+//https://medium.com/androiddevelopers/room-coroutines-422b786dc4c5
+// Suspend ensures generated code for the queries runs off the main thread
 @Dao
 interface StudentDao {
 
     @Query("SELECT *FROM studentList")
-    fun loadAllStudentsLists(): Flow<List<StudentData>>
+    suspend fun loadAllStudentsLists(): Flow<List<StudentData>>
 
     @Insert
-    suspend fun insertStudentList(students: StudentData)
+    suspend fun insertStudent(students: StudentData)
+
+    @Insert
+    suspend fun insertAllStudents(students: List<StudentData>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateStudentList(students: StudentData)
@@ -26,5 +30,5 @@ interface StudentDao {
     suspend fun deleteStudentList(students: StudentData)
 
     @Query("SELECT * FROM studentList where id = :id")
-    fun loadAllStudentListById(id : Int): LiveData<StudentData>
+    suspend fun loadAllStudentListById(id : Int): Flow<StudentData>
 }

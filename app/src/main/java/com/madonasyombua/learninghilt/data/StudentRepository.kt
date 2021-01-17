@@ -1,6 +1,7 @@
 package com.madonasyombua.learninghilt.data
 
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
+import com.madonasyombua.learninghilt.data.helpers.Result
 
 /**
  * @author Madona Syombua
@@ -8,5 +9,5 @@ import androidx.lifecycle.LiveData
  */
 
 interface StudentRepository {
-    val studentRepository: LiveData<List<StudentData>>
+    suspend fun getStudents(): Flow<List<StudentData>>
 }

@@ -14,14 +14,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object PersistenceModule {
 
-    private const val DATABASE_NAME : String = "studentdb"
+    private const val DATABASE_NAME: String = "studentdb"
 
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): StudentDatabase =
-        Room.databaseBuilder(context,
-        StudentDatabase::class.java
-        , DATABASE_NAME)
+        Room.databaseBuilder(
+            context,
+            StudentDatabase::class.java, DATABASE_NAME
+        )
             .build()
 
     @Provides
