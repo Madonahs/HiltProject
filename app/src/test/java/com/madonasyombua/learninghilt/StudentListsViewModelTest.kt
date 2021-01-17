@@ -13,6 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 
 //https://github.com/mockito/mockito-kotlin
+//https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
 class StudentListsViewModelTest {
 
     @ExperimentalCoroutinesApi
@@ -26,6 +27,7 @@ class StudentListsViewModelTest {
     @Test
     fun `when student data is loaded,the expected data is returned`() =
         runBlockingTest {
+
             val studentDataExpected = listOf(
                 StudentData(
                     id = 1,
@@ -35,6 +37,7 @@ class StudentListsViewModelTest {
                     timestamp = "78675757575"
                 )
             )
+
             val studentListsViewModel = StudentListsViewModel(
                 studentRepository = mock<StudentRepository>().apply {
                     whenever(getStudents()).thenReturn(flowOf(studentDataExpected))
