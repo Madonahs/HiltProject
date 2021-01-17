@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 interface StudentDao {
 
     @Query("SELECT *FROM studentList")
-    suspend fun loadAllStudentsLists(): Flow<List<StudentData>>
+    fun loadAllStudentsLists(): Flow<List<StudentData>>
 
     @Insert
     suspend fun insertStudent(students: StudentData)
@@ -30,5 +30,5 @@ interface StudentDao {
     suspend fun deleteStudentList(students: StudentData)
 
     @Query("SELECT * FROM studentList where id = :id")
-    suspend fun loadAllStudentListById(id : Int): Flow<StudentData>
+    fun loadAllStudentListById(id : Int): Flow<StudentData>
 }
