@@ -9,5 +9,5 @@ import com.madonasyombua.learninghilt.data.helpers.Result
  */
 
 interface StudentRepository {
-    suspend fun getStudents(): Flow<List<StudentData>>
+    fun getStudents(): Flow<List<StudentData>>
 }

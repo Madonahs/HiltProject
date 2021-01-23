@@ -10,7 +10,7 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 abstract class LocalDbTest {
-    private lateinit var db: StudentDatabase
+    lateinit var db: StudentDatabase
 
     @Before
     fun `init db `(){

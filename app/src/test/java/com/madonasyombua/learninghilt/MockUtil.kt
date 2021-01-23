@@ -4,7 +4,7 @@ import com.madonasyombua.learninghilt.data.StudentData
 
 
 object MockUtil {
-    fun mockStudentData() =  StudentData(
+    private fun mockStudentData() =  StudentData(
         id = 1,
         school = "name",
         StudentFirstName = "first",

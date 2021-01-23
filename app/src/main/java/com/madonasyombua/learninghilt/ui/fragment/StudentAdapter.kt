@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.madonasyombua.learninghilt.data.StudentData
 import com.madonasyombua.learninghilt.databinding.StudentListsBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @author Madona Syombua
@@ -21,7 +24,8 @@ internal class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewH
             binding.studentSchool.text = students.school
             binding.studentName.text = students.StudentFirstName
             binding.studentScore.text = students.examScore
-            binding.time.text = students.timestamp
+            val updated = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+            binding.time.text = updated.format(students.timestamp)
         }
     }
 
@@ -40,6 +44,10 @@ internal class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewH
     fun submitStudentList(students: List<StudentData>) {
         studentList = students
         notifyDataSetChanged()
+    }
+
+    companion object{
+        const val DATE_FORMAT = "dd/MM/yyyy"
     }
 
 }
