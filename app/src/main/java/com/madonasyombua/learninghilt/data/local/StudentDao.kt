@@ -17,10 +17,10 @@ interface StudentDao {
     @Query("SELECT *FROM studentList")
     fun loadAllStudentsLists(): Flow<List<StudentData>>
 
-    @Insert
-    suspend fun insertStudent(students: StudentData)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertStudent(vararg students: StudentData)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllStudents(students: List<StudentData>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

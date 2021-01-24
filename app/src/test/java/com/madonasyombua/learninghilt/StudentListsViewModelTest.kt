@@ -13,41 +13,27 @@ import org.junit.Rule
 import org.junit.Test
 
 //https://github.com/mockito/mockito-kotlin
-//https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
+@ExperimentalCoroutinesApi
 class StudentListsViewModelTest {
 
-    @ExperimentalCoroutinesApi
+
     @get:Rule
     val coroutineRule = MainCoroutineRule()
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `when student data is loaded,the expected data is returned`() =
         runBlockingTest {
-
-            val studentDataExpected = listOf(
-                StudentData(
-                    id = 1,
-                    school = "name",
-                    StudentFirstName = "first",
-                    examScore = "12",
-                    timestamp = "78675757575"
-                )
-            )
-
             val studentListsViewModel = StudentListsViewModel(
                 studentRepository = mock<StudentRepository>().apply {
-                    whenever(getStudents()).thenReturn(flowOf(studentDataExpected))
+                    whenever(getStudents()).thenReturn(flowOf(MockUtil.mockStudentDataList()))
                 }
             )
 
             studentListsViewModel.studentData.observeForever { studentDataActual ->
-                assert(studentDataActual == studentDataExpected) {
-                    println("Expected $studentDataExpected but got $studentDataActual")
-                }
+                assert(studentDataActual == MockUtil.mockStudentDataList())
             }
         }
 

@@ -2,6 +2,7 @@ package com.madonasyombua.learninghilt.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 /**
  * @author Madona Syombua
@@ -15,5 +16,5 @@ data class StudentData(
     var school: String?,
     var StudentFirstName: String?,
     var examScore: String?,
-    var timestamp: String?
+    var timestamp: Date?
 )
