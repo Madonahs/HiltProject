@@ -1,6 +1,5 @@
-package com.madonasyombua.learninghilt
+package com.madonasyombua.learninghilt.data
 
-import com.madonasyombua.learninghilt.data.StudentData
 import java.util.*
 
 object StudentDataSample {

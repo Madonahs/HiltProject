@@ -14,9 +14,13 @@ import kotlin.collections.ArrayList
  * 2021 Learning Hilt
  */
 
-internal class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
 
-    private var studentList: List<StudentData> = ArrayList()
+    var studentList: List<StudentData> = ArrayList()
+    set(value){
+        field = value
+        notifyDataSetChanged()
+    }
 
     class StudentViewHolder(private val binding: StudentListsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -40,11 +44,6 @@ internal class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewH
     }
 
     override fun getItemCount(): Int = studentList.size
-
-    fun submitStudentList(students: List<StudentData>) {
-        studentList = students
-        notifyDataSetChanged()
-    }
 
     companion object{
         const val DATE_FORMAT = "dd/MM/yyyy"

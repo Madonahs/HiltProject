@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.madonasyombua.learninghilt.R
 import com.madonasyombua.learninghilt.data.StudentData
 import com.madonasyombua.learninghilt.databinding.StudentListsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class StudentListsFragment : Fragment() {
 
     private val viewModel: StudentListsViewModel by viewModels()
-    private lateinit var studentListAdapter: StudentAdapter
+
+    lateinit var studentListAdapter: StudentAdapter
     private var binding: StudentListsFragmentBinding? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,16 +32,20 @@ class StudentListsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setUpStudentAdapter()
         viewModel.studentData.observe(viewLifecycleOwner, observer)
+        binding?.button?.setOnClickListener {
+
+        }
     }
 
     private val observer = Observer<List<StudentData>> { studentList ->
-        binding?.studentList?.visibility = if (studentList.isEmpty()) View.GONE else View.VISIBLE
+        binding?.studentListRecyler?.visibility =
+            if (studentList.isEmpty()) View.GONE else View.VISIBLE
         binding?.noStudentList?.visibility = if (studentList.isEmpty()) View.VISIBLE else View.GONE
-        studentListAdapter.submitStudentList(studentList)
+        studentListAdapter.studentList = studentList
     }
 
     private fun setUpStudentAdapter() {
         studentListAdapter = StudentAdapter()
-        binding?.studentList?.adapter = studentListAdapter
+        binding?.studentListRecyler?.adapter = studentListAdapter
     }
 }

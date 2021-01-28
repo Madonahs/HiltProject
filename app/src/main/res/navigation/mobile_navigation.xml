@@ -9,6 +9,18 @@
         android:id="@+id/student_list"
         android:name="com.madonasyombua.learninghilt.ui.fragment.StudentListsFragment"
         android:label="StudentList"
-        tools:layout="@layout/student_lists_fragment" />
+        tools:layout="@layout/student_lists_fragment"
+        >
+
+        <action
+            android:id="@+id/action_student"
+            app:destination="@id/list_of_students"
+            app:popUpTo="@id/student_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/list_of_students"
+        android:name="com.madonasyombua.learninghilt.ui.fragment.ListOfStudentFragment"
+        android:label="StudentList"
+        tools:layout="@layout/list_of_student_fragment" />
 
 </navigation>

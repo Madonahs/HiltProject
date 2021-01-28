@@ -1,6 +1,5 @@
 package com.madonasyombua.learninghilt.data.helpers
 
-
 sealed class Result<out Type> {
 
     data class Success<out Type>(

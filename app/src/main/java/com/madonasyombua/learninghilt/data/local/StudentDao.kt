@@ -18,7 +18,7 @@ interface StudentDao {
     fun loadAllStudentsLists(): Flow<List<StudentData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStudent(vararg students: StudentData)
+    suspend fun insertStudent( students: StudentData)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllStudents(students: List<StudentData>)
@@ -31,4 +31,7 @@ interface StudentDao {
 
     @Query("SELECT * FROM studentList where id = :id")
     fun loadAllStudentListById(id : Int): Flow<StudentData>
+
+    @Query("Select * from studentList")
+    suspend fun observeAll(): List<StudentData>
 }

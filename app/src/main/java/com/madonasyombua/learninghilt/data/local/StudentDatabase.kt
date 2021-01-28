@@ -2,10 +2,8 @@ package com.madonasyombua.learninghilt.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.madonasyombua.learninghilt.data.StudentData
-
 
 /**
  * @author Madona Syombua
