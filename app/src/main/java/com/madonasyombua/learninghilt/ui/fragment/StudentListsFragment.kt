@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -32,9 +33,6 @@ class StudentListsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setUpStudentAdapter()
         viewModel.studentData.observe(viewLifecycleOwner, observer)
-        binding?.button?.setOnClickListener {
-
-        }
     }
 
     private val observer = Observer<List<StudentData>> { studentList ->
@@ -47,5 +45,41 @@ class StudentListsFragment : Fragment() {
     private fun setUpStudentAdapter() {
         studentListAdapter = StudentAdapter()
         binding?.studentListRecyler?.adapter = studentListAdapter
+    }
+
+    private fun requestPermissions(missingPermission: List<String>){
+        val shouldProvideRational = missingPermission.any {
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),it
+            )
+        }
+
+        if(shouldProvideRational){
+            handleShowPermissionRationale(missingPermission.toList())
+        }else{
+            requestPermissions(
+                missingPermission.toTypedArray(),
+                PERMISSION_REQUEST_CODE
+
+            )
+        }
+    }
+
+    private fun handleShowPermissionRationale(toList: List<String>) {
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+    }
+
+
+    companion object{
+        const val PERMISSION_REQUEST_CODE = 22
     }
 }
