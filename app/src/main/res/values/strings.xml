@@ -4,4 +4,9 @@
     <string name="noData">No Data</string>
     <string name="student_school">School</string>
     <string name="name">Madona</string>
+    <string name="dialog_one">You must allow learning hilt to access CAMERA</string>
+    <string name="dialog_two">You must allow hilt to access Microphone</string>
+    <string name="dialog_setting_title">Settings</string>
+    <string name="dialog_setting_positive_button_title">Go To settings</string>
+    <string name="dialog_setting_negative_button_title">cancel</string>
 </resources>
