@@ -23,4 +23,19 @@
         android:label="StudentList"
         tools:layout="@layout/list_of_student_fragment" />
 
+    <fragment
+        android:id="@+id/login_in_fragment"
+        android:name="com.madonasyombua.learninghilt.ui.fragment.LoginFragment"
+        android:label="LoginList"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_in_fragment_to_list_of_students"
+            app:destination="@id/list_of_students" />
+        <deepLink
+            android:id="@+id/deepLink"
+            android:autoVerify="true"
+            app:uri="https://streem.swac.streem.team/?invite={inviteCode}" />
+    </fragment>
+
 </navigation>

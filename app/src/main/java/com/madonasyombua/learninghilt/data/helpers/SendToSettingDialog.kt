@@ -28,7 +28,7 @@ class SendToSettingDialog : DialogFragment() {
         }
        return AlertDialog.Builder(requireContext())
              .setTitle(R.string.dialog_setting_title)
-             . setMessage(messages)
+           //  .setMessage(messages)
             .setPositiveButton(
                 R.string.dialog_setting_positive_button_title
             ) { _, _ ->

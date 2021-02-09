@@ -1,0 +1,1 @@
+/home/madona/AndroidStudioProjects/HiltProject/buildSrc/build/classes/kotlin/main/Versions$Versions.class:/home/madona/AndroidStudioProjects/HiltProject/buildSrc/build/classes/kotlin/main/Versions.class

@@ -19,6 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+      <!--  <intent-filter>
+            <data android:scheme="https" android:host="*.swac.demo.streem.cloud"/>
+            <data android:scheme="https" android:host="*.swac.dev.streem.cloud"/>
+            <data android:scheme="https" android:host="*.swac.prod-us.streem.cloud"/>
+            <data android:scheme="https" android:host="*.swac.qa.streem.cloud"/>
+            <data android:scheme="https" android:host="*.swac.sandbox.streem.cloud"/>
+            <data android:scheme="https" android:host="*.swac.streem.team"/>
+        </intent-filter>-->
     </application>
+
 
 </manifest>
