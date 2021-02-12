@@ -22,46 +22,40 @@ class StudentRepositoryImpl @Inject constructor(
         }
     }
 
-/*  override suspend fun getStudents(): Flow<List<StudentData>> = flow {
-      studentDao.insertAllStudents(provideStudentData())
-      emit(studentDao.loadAllStudentsLists())
-      return@flow
-  }*/
-
     private fun provideStudentData() = listOf(
         StudentData(
             1,
-            "Mody",
-            "100",
-            "11:22pm",
+            "Stanford University",
+            "Alice Johnson",
+            "100%",
             Date()
         ),
         StudentData(
             2,
-            "Mody",
-            "100",
-            "11:22pm",
+            "Auburn University",
+            "Malika Todd",
+            "100%",
             Date()
         ),
         StudentData(
             3,
-            "Mody",
-            "100",
-            "11:22pm",
+            "Howard University",
+            "Brody Nelson",
+            "99%",
             Date()
         ),
         StudentData(
             4,
-            "Mody",
-            "100",
-            "11:22pm",
+            "MIT",
+            "Mercy Smith",
+            "89%",
             Date()
         ),
         StudentData(
             5,
-            "Mody",
-            "100",
-            "11:22pm",
+            "Cornell University",
+            "Joshua Val",
+            "100%",
             Date()
         )
     )
