@@ -16,5 +16,5 @@ data class StudentData(
     var school: String?,
     var StudentFirstName: String?,
     var examScore: String?,
-    var timestamp: Date?
+    var timestamp: Date? = null
 )
