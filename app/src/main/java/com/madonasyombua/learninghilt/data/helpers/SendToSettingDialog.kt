@@ -5,8 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.madonasyombua.learninghilt.R
 
 enum class Permission{
@@ -19,16 +19,16 @@ class SendToSettingDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val permissionIntArray = arguments?.getIntArray(ARG_PERMISSIONS)
         val messages = if(permissionIntArray?.size ?: 0 > 1){
-            "Permissions Needed"
+           R.string.permission
         }else{
             when(Permission.values()[permissionIntArray?.get(0) ?: 0]){
                 Permission.CAMERA -> R.string.dialog_one
                 else -> R.string.dialog_two
             }
         }
-       return AlertDialog.Builder(requireContext())
-             .setTitle(R.string.dialog_setting_title)
-           //  .setMessage(messages)
+        val builder = MaterialAlertDialogBuilder(requireContext())
+             builder.setTitle(R.string.dialog_setting_title)
+             builder.setMessage(messages)
             .setPositiveButton(
                 R.string.dialog_setting_positive_button_title
             ) { _, _ ->
@@ -46,15 +46,14 @@ class SendToSettingDialog : DialogFragment() {
                 R.string.dialog_setting_negative_button_title
             ) { dialog, _ ->
                 dialog.dismiss()
-            }.create()
+            }
 
+        return builder.create()
     }
-
-
 
     companion object{
         private const val ARG_PERMISSIONS = "permissions"
-        fun newInstance(permissions: List<Permission>): SendToSettingDialog?{
+        fun newInstance(permissions: List<Permission>): SendToSettingDialog{
             val permissionSetting = SendToSettingDialog()
             val args = Bundle()
             args.putIntArray(ARG_PERMISSIONS, permissions.map { it.ordinal }.toIntArray())

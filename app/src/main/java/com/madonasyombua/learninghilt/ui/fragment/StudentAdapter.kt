@@ -32,7 +32,11 @@ class StudentAdapter(
             binding.studentSchool.text = data.school
             binding.studentName.text = data.StudentFirstName
             binding.studentScore.text = data.examScore
-            DateUtil().getFormattedDate(data, timeProvider.getCurrentDate())
+            binding.time.text = DateUtil().getFormattedDate(
+                context = itemView.context,
+                studentData = data,
+                currentDate = timeProvider.getCurrentDate()
+            )
 
         }
     }

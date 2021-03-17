@@ -1,5 +1,7 @@
 package com.madonasyombua.learninghilt.ui.fragment
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +11,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.madonasyombua.learninghilt.data.StudentData
+import com.madonasyombua.learninghilt.data.helpers.Permission
+import com.madonasyombua.learninghilt.data.helpers.PermissionsRationaleDialog
+import com.madonasyombua.learninghilt.data.helpers.SendToSettingDialog
 import com.madonasyombua.learninghilt.databinding.StudentListsFragmentBinding
+import com.madonasyombua.learninghilt.util.TimeProvider
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class StudentListsFragment : Fragment() {
+class StudentListsFragment : Fragment(), PermissionsRationaleDialog.PermissionListener {
 
     private val viewModel: StudentListsViewModel by viewModels()
 
+    @Inject
+    lateinit var timeProvider: TimeProvider
     lateinit var studentListAdapter: StudentAdapter
     private var binding: StudentListsFragmentBinding? = null
 
@@ -43,7 +52,7 @@ class StudentListsFragment : Fragment() {
     }
 
     private fun setUpStudentAdapter() {
-        studentListAdapter = StudentAdapter()
+        studentListAdapter = StudentAdapter(timeProvider = timeProvider)
         binding?.studentListRecyler?.adapter = studentListAdapter
     }
 
@@ -65,8 +74,23 @@ class StudentListsFragment : Fragment() {
         }
     }
 
-    private fun handleShowPermissionRationale(toList: List<String>) {
+    private fun handleShowPermissionRationale(permissions: List<String>) {
+        PermissionsRationaleDialog.newInstance(permissions).show(childFragmentManager,null)
+    }
 
+    private fun showPermissionsDialog(permissions: Array<String>, grantResults: IntArray) {
+
+        val missingPermission = grantResults.zip(permissions).filter {
+            it.first == PackageManager.PERMISSION_DENIED
+        }.map {
+            if(it.second == Manifest.permission.RECORD_AUDIO){
+                Permission.RECORD_AUDIO
+            }else{
+                Permission.CAMERA
+            }
+        }
+        SendToSettingDialog.newInstance(missingPermission)
+                .show(childFragmentManager, null)
     }
 
     override fun onRequestPermissionsResult(
@@ -81,5 +105,19 @@ class StudentListsFragment : Fragment() {
 
     companion object{
         const val PERMISSION_REQUEST_CODE = 22
+    }
+
+    override fun onRationaleDontAllow(permissions: Array<String>) {
+       showPermissionsDialog(permissions,
+       permissions.map {
+           PackageManager.PERMISSION_DENIED
+       }.toIntArray())
+    }
+
+    override fun onRationaleAllow(permissions: Array<String>) {
+       requestPermissions(
+               permissions,
+               PERMISSION_REQUEST_CODE
+       )
     }
 }
