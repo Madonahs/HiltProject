@@ -13,12 +13,9 @@ class DateUtil {
             studentData: StudentData,
             currentDate: Date
     ): String {
-        studentData.timestamp?.let { callStartedAt ->
 
-            val dayOfWeek = Calendar.getInstance().apply {
-                time = currentDate
-                add(Calendar.DATE, -6)
-            }
+
+        studentData.timestamp?.let { callStartedAt ->
             return when {
                 !callStartedAt.before(getMidnight(currentDate, 0)) -> {
                     val dateFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
